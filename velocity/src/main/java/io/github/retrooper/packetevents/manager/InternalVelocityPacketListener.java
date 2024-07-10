@@ -28,7 +28,7 @@ import io.netty.channel.Channel;
 
 public class InternalVelocityPacketListener extends InternalPacketListener {
 
-  @Override
+    @Override
     public void onPacketSend(PacketSendEvent event) {
         if (event.getPacketType() == PacketType.Login.Server.SET_COMPRESSION) {
             WrapperLoginServerSetCompression compression = new WrapperLoginServerSetCompression(event);
