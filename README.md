@@ -2,7 +2,7 @@
 
 [![](https://img.shields.io/badge/License-GPLv3-yellow.svg)](https://github.com/retrooper/packetevents/blob/master/LICENSE)
 [![](https://jitpack.io/v/retrooper/packetevents.svg)](https://jitpack.io/#retrooper/packetevents)
-
+ 
 PacketEvents is a powerful packet library. Our packet wrappers are efficient and easy to use. We support many protocol versions. (1.8+)
 
 ### Resources
