@@ -1,5 +1,8 @@
 package com.github.retrooper.packetevents.protocol.particle.data;
 
+import com.github.retrooper.packetevents.protocol.nbt.NBTCompound;
+import com.github.retrooper.packetevents.protocol.nbt.NBTFloat;
+import com.github.retrooper.packetevents.protocol.player.ClientVersion;
 import com.github.retrooper.packetevents.wrapper.PacketWrapper;
 
 public class ParticleSculkChargeData extends ParticleData {
@@ -24,6 +27,23 @@ public class ParticleSculkChargeData extends ParticleData {
 
     public static void write(PacketWrapper<?> wrapper, ParticleSculkChargeData data) {
         wrapper.writeFloat(data.getRoll());
+    }
+
+    public static ParticleSculkChargeData decode(NBTCompound compound, ClientVersion version) {
+        if (version.isOlderThan(ClientVersion.V_1_20_5)) {
+            compound = compound.getCompoundTagOrThrow("value");
+        }
+        float roll = compound.getNumberTagOrThrow("roll").getAsFloat();
+        return new ParticleSculkChargeData(roll);
+    }
+
+    public static void encode(ParticleSculkChargeData data, ClientVersion version, NBTCompound compound) {
+        if (version.isOlderThan(ClientVersion.V_1_20_5)) {
+            NBTCompound innerCompound = new NBTCompound();
+            compound.setTag("value", innerCompound);
+            compound = innerCompound;
+        }
+        compound.setTag("roll", new NBTFloat(data.roll));
     }
 
     @Override
